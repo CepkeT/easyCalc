@@ -1,0 +1,33 @@
+<div class="calculator">
+  <h1>Калькулируй</h1>
+  <div class="input-container">
+    <input type="text" [(ngModel)]="expression" #inputRef (keyup)="calculate()">
+  </div>
+  <div class="button-row">
+    <button (click)="appendCharacter('1')">1</button>
+    <button (click)="appendCharacter('2')">2</button>
+    <button (click)="appendCharacter('3')">3</button>
+    <button (click)="appendCharacter('+')">+</button>
+  </div>
+  <div class="button-row">
+    <button (click)="appendCharacter('4')">4</button>
+    <button (click)="appendCharacter('5')">5</button>
+    <button (click)="appendCharacter('6')">6</button>
+    <button (click)="appendCharacter('-')">-</button>
+  </div>
+  <div class="button-row">
+    <button (click)="appendCharacter('7')">7</button>
+    <button (click)="appendCharacter('8')">8</button>
+    <button (click)="appendCharacter('9')">9</button>
+    <button (click)="appendCharacter('*')">*</button>
+  </div>
+  <div class="button-row">
+    <button (click)="appendCharacter('0')">0</button>
+    <button (click)="calculate()">=</button>
+    <button (click)="performCalculation()">чисто чишу</button>
+    <button (click)="appendCharacter('/')">/</button>
+  </div>
+  <div class="result-container">
+    <div>{{ result }}</div>
+  </div>
+</div>
