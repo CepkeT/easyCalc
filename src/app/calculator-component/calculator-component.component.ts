@@ -44,7 +44,7 @@ export class CalculatorComponentComponent {
     switch (this.operator) {
       case '+':
         if (num1 === 2 && num2 === 2) {
-          return 'я же сказал 5';
+          return '5 я сказал';
         } else {
           return num1 + num2;
         }
@@ -52,7 +52,7 @@ export class CalculatorComponentComponent {
         return num1 - num2;
       case '*':
         if (num1 === 2 && num2 === 2) {
-          return 'я же сказал 5';
+          return 'верь мне 5';
         } else {
           return num1 * num2;
         }
