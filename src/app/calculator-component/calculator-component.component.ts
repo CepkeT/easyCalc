@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+//без eval(
+/*import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-calculator-component',
@@ -77,7 +78,58 @@ export class CalculatorComponentComponent {
       this.calculate();
     }
   }
-}
+})*/
 //ToDo: 1.кнопочки в картинки
 // 2.убрать отдельный результат кинуть его в окошко ввода просто пониже
 // 3.хз потом придумаю что-то еще
+
+//c без eval() без кастома но лучше считает
+import { Component, ViewChild, ElementRef } from '@angular/core';
+
+@Component({
+  selector: 'app-calculator-component',
+  templateUrl: './calculator-component.component.html',
+  styleUrls: ['./calculator-component.component.css']
+})
+export class CalculatorComponentComponent {
+  @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
+  expression: string = '';
+  result: number | string = 0;
+
+  ngAfterViewInit() {
+    this.inputRef.nativeElement.addEventListener('keyup', (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        this.calculate();
+      } else if (event.key === 'Backspace') {
+        this.performCalculation();
+      }
+    });
+  }
+
+  appendCharacter(character: string) {
+    this.expression += character;
+  }
+
+  calculate() {
+    this.result = this.evaluateExpressionWithEval(this.expression);
+  }
+
+  evaluateExpressionWithEval(expression: string): number | string {
+    try {
+      return eval(expression);
+    } catch (error) {
+      return 'инвалид';
+    }
+  }
+
+  performCalculation() {
+    this.result = this.evaluateExpressionWithEval(this.expression);
+    this.expression = '';
+  }
+
+  handleEnter(event: Event) {
+    if ((event as KeyboardEvent).key === 'Enter') {
+      this.calculate();
+    }
+  }
+}
